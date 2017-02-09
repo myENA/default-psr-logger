@@ -1,6 +1,8 @@
 # default-psr-logger
 A simple PSR-3 compliant logger
 
+[![Build Status](https://travis-ci.org/myENA/default-psr-logger.svg?branch=master)](https://travis-ci.org/myENA/default-psr-logger)
+
 ## Installation
 
 This library is designed to be used with [Composer](https://getcomposer.org)
