@@ -42,6 +42,18 @@ class DefaultLogger extends AbstractLogger
         LogLevel::EMERGENCY => 7,
     ];
 
+    /** @var array */
+    protected $slugLevelBuffers = [
+        LogLevel::DEBUG => '          ',
+        LogLevel::INFO => '           ',
+        LogLevel::NOTICE => '         ',
+        LogLevel::WARNING => '        ',
+        LogLevel::ERROR => '          ',
+        LogLevel::CRITICAL => '       ',
+        LogLevel::ALERT => '          ',
+        LogLevel::EMERGENCY => '      ',
+    ];
+
     /**
      * DefaultLogger constructor.
      *
@@ -114,7 +126,7 @@ class DefaultLogger extends AbstractLogger
 
         if ($this->levelMap[$this->level] <= $this->levelMap[$level])
         {
-            $slug = sprintf('[%s]%s', strtolower($level), str_repeat(' ', 15 - strlen($level)));
+            $slug = sprintf('[%s]%s', strtolower($level), $this->slugLevelBuffers[$level]);
             if ("\n" !== substr($message, -1))
                 $message .= "\n";
 
