@@ -11,7 +11,7 @@ Require entry:
 
 ```json
 {
-    "myena/default-psr-logger": "@stable"
+    "myena/default-logger": "@stable"
 }
 ```
 
