@@ -56,6 +56,6 @@ $logger = new \MyENA\DefaultLogger(\Psr\Log\LogLevel::DEBUG, fopen('tmp/test.log
 ```
 
 If this file becomes un-writeable for some reason, it will attempt to reconstruct the internal resource.  If it is
-unable, it will revert to using the stream returned by the [defaultStream()](./src/DefaultLogger.php#L133).
+unable, it will revert to using the stream returned by the [defaultStream()](./src/DefaultLogger.php#L145).
 
 **NOTE**: No write-ability determination is done, if you pass in a read-only stream it will ultimately not work.
