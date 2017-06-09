@@ -69,7 +69,7 @@ class DefaultANSILogger extends DefaultLogger {
 
             $msg = sprintf('%s%s %s', $slug, date(static::$dateTimeFormat), $message);
 
-            $this->ansi->color($this->colorMap[$level])->text($msg)->nocolor();
+            $this->ansi->color($this->colorMap[$level])->text($msg)->nostyle();
         }
     }
 }
