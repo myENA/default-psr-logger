@@ -50,19 +50,26 @@ class DefaultANSILogger extends DefaultLogger {
     }
 
     /**
-     * @param string $msg
-     * @param int $tries
+     * @param mixed $level
+     * @param string $message
+     * @param array $context
      */
-    protected function tryLog($msg, $tries = 0) {
-        // TODO: Catch errors...
-        $this->ansi->text($msg)->lf();
-    }
+    public function log($level, $message, array $context = array()) {
 
-    /**
-     * Attempts to set the new, "recovered" writer to ansi
-     */
-    protected function attemptStreamRecovery() {
-        parent::attemptStreamRecovery();
-        $this->ansi->setWriter(new StreamWriter($this->stream));
+        if (!is_string($level) || !isset($this->levelMap[$level])) {
+            throw new \InvalidArgumentException(sprintf('"%s" is an unknown log level', $level));
+        }
+
+        if ($this->levelMap[$this->level] <= $this->levelMap[$level]) {
+
+            $slug = sprintf('[%s]%s', strtolower($level), $this->slugLevelBuffers[$level]);
+            if ("\n" !== substr($message, -1)) {
+                $message .= "\n";
+            }
+
+            $msg = sprintf('%s%s %s', $slug, date(static::$dateTimeFormat), $message);
+
+            $this->ansi->color($this->colorMap[$level])->text($msg)->nocolor();
+        }
     }
 }
