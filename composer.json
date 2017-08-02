@@ -17,7 +17,8 @@
     },
 
     "require": {
-        "psr/log": "1.*"
+        "psr/log": "1.*",
+        "bramus/ansi-php": "3.0.*"
     },
 
     "require-dev": {
