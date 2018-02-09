@@ -9,7 +9,7 @@
 /**
  * Class CustomStateTest
  */
-class CustomStateTest extends PHPUnit_Framework_TestCase
+class CustomStateTest extends \PHPUnit\Framework\TestCase
 {
     const TMP_DIR = __DIR__.'/../tmp';
     const TMP_LOGFILE = self::TMP_DIR.'/test.log';
