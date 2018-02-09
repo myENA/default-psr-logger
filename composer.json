@@ -1,27 +1,25 @@
 {
-    "name": "myena/default-logger",
-    "type": "library",
-    "description": "A simple PSR-3 compliant logger",
-    "license": "MPLv2.0",
-    "authors": [
-        {
-            "name": "Daniel Carbone",
-            "email": "dcarbone@ena.com"
-        }
-    ],
-
-    "autoload": {
-        "psr-4": {
-            "MyENA\\": "src/"
-        }
-    },
-
-    "require": {
-        "psr/log": "1.*",
-        "bramus/ansi-php": "3.0.*"
-    },
-
-    "require-dev": {
-        "phpunit/phpunit": "5.7.*"
+  "name": "myena/default-logger",
+  "type": "library",
+  "description": "A simple PSR-3 compliant logger",
+  "license": "MPL-2.0",
+  "authors": [
+    {
+      "name": "Daniel Carbone",
+      "email": "dcarbone@ena.com"
     }
+  ],
+  "autoload": {
+    "psr-4": {
+      "MyENA\\": "src/"
+    }
+  },
+  "require": {
+    "php": ">=5.6",
+    "psr/log": "1.*",
+    "bramus/ansi-php": "3.0.*"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "@stable"
+  }
 }
