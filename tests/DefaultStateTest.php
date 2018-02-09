@@ -9,7 +9,7 @@
 /**
  * Class DefaultStateTest
  */
-class DefaultStateTest extends PHPUnit_Framework_TestCase
+class DefaultStateTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @return \MyENA\DefaultLogger

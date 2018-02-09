@@ -9,7 +9,7 @@
 /**
  * Class DefaultANSITest
  */
-class DefaultANSITest extends PHPUnit_Framework_TestCase {
+class DefaultANSITest extends \PHPUnit\Framework\TestCase {
     /**
      * @return \MyENA\DefaultANSILogger
      */
