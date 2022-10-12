@@ -1,0 +1,39 @@
+name: "Tests"
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        php-version: ["7.4", "8.0", "8.1"]
+    name: "unit Tests - PHP ${{ matrix.php-version }}"
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: shivammathur/setup-php@v2.21.2
+        with:
+          php-version: '${{ matrix.php-version }}'
+
+      - name: Get Composer Cache Directory
+        id: composer-cache
+        run: |
+          echo "::set-output name=dir::$(composer config cache-files-dir)"
+
+      - uses: actions/cache@v3
+        with:
+          path: ${{ steps.composer-cache.outputs.dir }}
+          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-composer-
+
+      - run: |
+          composer install --no-ansi --no-interaction --no-scripts --no-suggest --no-progress --prefer-dist
+
+      - run: |
+          phpunit -c $(pwd)/phpunit.xml
