@@ -18,10 +18,10 @@ use Psr\Log\LogLevel;
 class DefaultANSILogger extends DefaultLogger {
 
     /** @var \Bramus\Ansi\Ansi */
-    protected $ansi;
+    protected Ansi $ansi;
 
     /** @var array */
-    protected $colorMap = [
+    protected array $colorMap = [
         LogLevel::DEBUG => [SGR::COLOR_FG_WHITE],
         LogLevel::INFO => [SGR::COLOR_FG_GREEN],
         LogLevel::NOTICE => [SGR::COLOR_FG_CYAN],
@@ -35,9 +35,9 @@ class DefaultANSILogger extends DefaultLogger {
     /**
      * DefaultANSILogger constructor.
      * @param string $level
-     * @param null $writeableStream
+     * @param mixed $writeableStream
      */
-    public function __construct($level = LogLevel::DEBUG, $writeableStream = null) {
+    public function __construct(string $level = LogLevel::DEBUG, $writeableStream = null) {
         parent::__construct($level, $writeableStream);
         $this->ansi = new Ansi(new StreamWriter($this->stream));
     }
@@ -45,7 +45,7 @@ class DefaultANSILogger extends DefaultLogger {
     /**
      * @param array $colorMap
      */
-    public function setColorMap(array $colorMap) {
+    public function setColorMap(array $colorMap): void {
         $this->colorMap = $colorMap;
     }
 
@@ -54,7 +54,7 @@ class DefaultANSILogger extends DefaultLogger {
      * @param string $message
      * @param array $context
      */
-    public function log($level, $message, array $context = array()) {
+    protected function doLog(string $level, string $message, array $context = array()): void{
 
         if (!is_string($level) || !isset($this->levelMap[$level])) {
             throw new \InvalidArgumentException(sprintf('"%s" is an unknown log level', $level));
